@@ -1,10 +1,14 @@
 import React from "react";
 import "./App.css";
+import Login from "./Components/Login";
 
 function App() {
   return (
+    //BEM
     <div className="App">
-      <h1 className="">Spotify Clone</h1>
+      {/* Spotify logo */}
+      <Login />
+      {/* Login with spotify button */}
     </div>
   );
 }
