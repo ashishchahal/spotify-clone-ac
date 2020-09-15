@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   color: grey;
+  margin: 20px;
   cursor: pointer;
   transition: 200ms color ease-in;
 }
