@@ -21,12 +21,12 @@ function App() {
 
     if (_token) {
       // setToken(_token);
-      // spotify.setAccessToken(_token);
-
       dispatch({
         type: "SET_TOKEN",
         token: _token,
       });
+
+      spotify.setAccessToken(_token);
 
       // getting the details of the user from spotify
       spotify.getMe().then((user) => {
