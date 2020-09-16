@@ -3,7 +3,11 @@
 export const authEndpoint = "https://accounts.spotify.com/authorize";
 
 // we filled this in the spotify developers dashboard
-const redirectUri = "https://spotify-clone-ac.web.app/";
+//for live app
+//const redirectUri = "https://spotify-clone-ac.web.app/";
+
+// for dev
+const redirectUri = "http://localhost:3001/";
 
 // it was provided in the spotify developers dashboard when we created the app
 const clientId = "aac1a158cf4f48578a3c2f2fe20525a4";

@@ -36,6 +36,31 @@ function App() {
         });
       });
 
+      spotify
+        .getMyDevices()
+        .then((res) => {
+          // this logic is not right..find one!!
+          let id;
+          const devices = res?.devices.map((devId) =>
+            devId.is_active
+              ? (id = devId.id)
+              : (id = "f61f3a9ce8921c5ec58c6a6b969b7d132fe46ea3")
+          );
+
+          console.log(id, "🕵️‍♂️");
+
+          dispatch({
+            type: "SET_DEVICE_ID",
+            deviceId: "f61f3a9ce8921c5ec58c6a6b969b7d132fe46ea3",
+          });
+          console.log("devices", res.devices);
+        })
+        .catch((error) => console.log(error, "devices error"));
+
+      // device id of samsung m31s -> "f61f3a9ce8921c5ec58c6a6b969b7d132fe46ea3"
+      // device id of macbook air ==> "a3859ef2bd4a719bf41c4c6c755311a2d095583b"
+      // device id of Echo --> "ce0d01b6ce014b4c79b49beca30581de4b49c586"
+
       spotify.getUserPlaylists().then((playlists) => {
         dispatch({
           type: "SET_PLAYLISTS",
@@ -43,19 +68,31 @@ function App() {
         });
       });
 
-      spotify.getPlaylist("37i9dQZEVXcTV4lXBOKTDt").then((response) => {
+      // getting the details of My Discover Weekly playlist
+      spotify.getPlaylist("2BHHJbvo6Az3XD3MvLie2i").then((response) => {
         dispatch({
           type: "SET_DISCOVER_WEEKLY",
           discover_weekly: response,
         });
+      });
+      spotify.getMyTopArtists().then((response) =>
+        dispatch({
+          type: "SET_TOP_ARTISTS",
+          top_artists: response,
+        })
+      );
+
+      dispatch({
+        type: "SET_SPOTIFY",
+        spotify: spotify,
       });
     }
 
     //console.log("I have a token 👉", token);
   }, []);
 
-  console.log("👱 dispatch", user);
-  console.log("👽", token);
+  // console.log("👱 User", user);
+  // console.log("👽", token);
 
   return (
     //BEM
